@@ -1,0 +1,32 @@
+spring:
+  datasource:
+      driver-class-name: com.mysql.jdbc.Driver
+      url: jdbc:mysql://localhost:3306/girlsdb?useUnicode=true&characterEncoding=UTF-8
+      username: root
+      password:
+      type: com.alibaba.druid.pool.DruidDataSource
+#      rabbitmq基本配置
+  rabbitmq:
+    addresses: 127.0.0.1:5672
+    username: guest
+    password: guest
+    virtual-host: /
+    connection-timeout: 15000
+#    rabbiymq消费端配置
+    listener:
+      simple:
+        concurrency: 10
+        max-concurrency: 20
+        prefetch: 1
+        acknowledge-mode: manual
+  http:
+    encoding:
+      charset: UTF-8
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+    default-property-inclusion: non_null
+server:
+  servlet:
+    context-path: /rabbitmq-producer
+  port: 8002
